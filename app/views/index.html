@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Türk Biyologlar Derneği</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" href="/panel.css" />
+
+    <link rel="stylesheet" href="/style.css" />
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <style media="screen, print">
+      @font-face {
+        font-family: "Çok iyi font";
+        src: url("https://cdn.glitch.global/440e545c-6bcc-4068-885f-5804db0f28d2/Poppins-SemiBold.ttf?v=1679767542335");
+      }
+      @font-face {
+        font-family: "Çok iyi font ama bold değil";
+        src: url("https://cdn.glitch.global/440e545c-6bcc-4068-885f-5804db0f28d2/Poppins-Regular.ttf?v=16797675456659");
+      }
+      body {
+        font-family: "Çok iyi font";
+        background-color: #03a3bc;
+        -webkit-font-smoothing: antialiased;
+        color: white;
+        max-width: 100%
+      }
+      h3 {
+        font-family: "Çok iyi font";
+        font-weight: bold;
+      }
+      
+      .card__content {
+        color: black;
+        font-family: "Çok iyi font ama bold değil";
+        padding: 20px;
+      }
+      
+      .inceparagraf{
+        font-family: "Çok iyi font ama bold değil";
+      }
+      
+      .kalinparagraf{
+        font-family: "Çok iyi font";
+      }
+    </style>
+    <style>
+.mySlides {display: none}
+img {vertical-align: middle;}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1160px;
+  position: relative;
+  margin: auto;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: #03a3bc;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: white;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .prev, .next,.text {font-size: 11px}
+}
+</style>
+  </head>
+  <body>
+    <script src="https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js"></script>
+    <script src="/script.js" defer></script>
+    
+<div id="white-background">
+</div>
+<div id="dlgbox">
+    <div id="dlg-header">İletişim</div>
+    <div id="dlg-body">Aşağıdaki bilgileri doldurun.
+    <input
+            class="w3-input w3-section w3-border"
+            type="text"
+            placeholder="İsim Soyisim"
+            required
+            name="İsim"
+            id="isim"
+          />
+          <input
+            class="w3-input w3-section w3-border"
+            type="text"
+            placeholder="E-Posta"
+            required
+            name="EPosta"
+            id="eposta"
+          />
+          <input
+            class="w3-input w3-section w3-border"
+            type="text"
+            placeholder="Konu"
+            required
+            name="Konu"
+            id="konu"
+          />
+          <textarea
+            class="w3-input w3-section w3-border"
+            type="text"
+            placeholder="İcerik"
+            required
+            name="Icerik"
+            id="icerik"
+          ></textarea>
+    </div>
+    <div id="dlg-footer">
+        <button class="w3-button w3-section gitbuton pribtn" onclick="dlgOK()">Gönder</button>
+        <button class="w3-button w3-white w3-section gitbuton secbtn" onclick="dlgCancel()">İptal</button>
+    </div>
+</div>
+    
+<div id="basvurdialog">
+    <div id="bvr-header">Başvuru Yap</div>
+    <div id="bvr-body"><p id="bvr-alt" style="margin-top: -2px;">
+      Aşağıdaki bilgileri doldurun.
+      </p>
+    <input
+            class="w3-input w3-section w3-border"
+            type="text"
+            placeholder="İsim Soyisim"
+            required
+            name="İsim"
+            id="bvr_isim"
+          />
+          <input
+            class="w3-input w3-section w3-border"
+            type="text"
+            placeholder="E-Posta"
+            required
+            name="EPosta"
+            id="bvr_eposta"
+          />
+          <input
+            class="w3-input w3-section w3-border"
+            type="text"
+            placeholder="Okul"
+            required
+            name="Okul"
+            id="bvr_okul"
+          />
+          <input
+            class="w3-input w3-section w3-border"
+            type="text"
+            placeholder="Bölüm"
+            required
+            name="Bölüm"
+            id="bvr_bolum"
+          /> 
+          <input
+            class="w3-input w3-section w3-border"
+            type="text"
+            placeholder="Sınıf"
+            required
+            name="Sınıf"
+            id="bvr_sinif"
+          />
+      <div id="bvr_bilgicon">
+    		<input type="checkbox" class="kucukcheck" id="bvr_bilgi">
+    		<label for="bvr_bilgi">Başvuru Bilgilerini Kaydet</label> 
+      </div>
+    </div>
+    <div id="bvr-footer">
+        <button class="w3-button gitbuton pribtn" id="gonderbtn" onclick="bvrOK()">Gönder</button>
+        <button class="w3-button w3-white w3-section gitbuton secbtn" onclick="bvrCancel()">İptal</button>
+    </div>
+</div>
+    <!-- Navbar (sit on top) -->
+    <div class="w3-top">
+      <div class="w3-white w3-wide w3-padding w3-card siteheader header">
+        <a href="#deneyler" class="w3-bar-item w3-button"
+           ><b style="margin-right: 6px">BBF</b><small>BiBioForm</small></a>
+        <!-- Float links to the right. Hide them on small screens -->
+        <div class="w3-right header-right">
+          <a href="#hakkimizda" class="w3-bar-item w3-button navbaritem">Hakkımızda</a>
+          <a href="#etkinlikler" class="w3-bar-item w3-button navbaritem">Etkinlikler</a>
+          <a href="#partnerler" class="w3-bar-item w3-button navbaritem">Partnerlerimiz</a>
+          <a href="#iletisim" class="w3-bar-item w3-button navbaritem">İletişim</a>
+          <button class="kulikobtn" onclick="BasvuruBilgisi()">
+            <img src="http://cdn.onlinewebfonts.com/svg/img_561543.png" class="kullaniciikon">
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header -->
+     <!-- <img
+        class="w3-image"
+        src="/w3images/architect.jpg"
+        alt="Architecture"
+        width="1500"
+        height="800"
+      />-->
+      <!-- <div class="w3-display-middle w3-margin-top w3-center">
+        <h1 class="w3-xxlarge w3-text-white">
+          <span class="w3-padding w3-black w3-opacity-min"><b>TBD</b></span>
+          <span class="w3-hide-small w3-text-light-grey">Türk Biyologlar Derneği</span>
+        </h1>
+      </div> -->
+
+    <!-- Page content -->
+    <div class="w3-content w3-padding mt10" style="max-width: 100%">
+      <!-- Project Section -->
+
+      <div class="slideshow-container mt10">
+<div class="mySlides fade">
+  <div class="numbertext">1 / 3</div>
+  <img class="slaytresim" src="https://cdn.glitch.global/440e545c-6bcc-4068-885f-5804db0f28d2/flat-biotechnology-concept-illustration_23-2148892329.avif?v=1679769027773" style="width:100%; max-height: 600px; min-height: 600px;">
+  <div class="text"></div>
+</div>
+<div class="mySlides fade">
+  <div class="numbertext">2 / 3</div>
+  <img class="slaytresim" src="https://cdn.glitch.global/440e545c-6bcc-4068-885f-5804db0f28d2/istockphoto-1213090148-612x612.jpg?v=1679769029196" style="width:100%; max-height: 600px; min-height: 600px;">
+  <div class="text"></div>
+</div>
+<div class="mySlides fade">
+  <div class="numbertext">3 / 3</div>
+  <img class="slaytresim" src="https://cdn.glitch.global/440e545c-6bcc-4068-885f-5804db0f28d2/dna-helix-symbol-isolated-white-background_1308-90224.avif?v=1679769028504" style="width:100%; max-height: 600px; min-height: 600px;">
+  <div class="text"></div>
+</div>
+<a class="prev" onclick="plusSlides(-1)">❮</a>
+<a class="next" onclick="plusSlides(1)">❯</a>
+
+</div>
+<br>
+
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span> 
+  <span class="dot" onclick="currentSlide(2)"></span> 
+  <span class="dot" onclick="currentSlide(3)"></span> 
+</div>
+      
+      <a id="hakkimizda"> </a>
+      <div class="w3-row-padding asdasd" id="hakkimizdabaslik">
+      <h3 class="w3-border-bottom w3-border-white pad10 ortaiki cardbaslik" style="margin-top: 50px; max-width: 100%;">
+          Hakkımızda
+        </h3>
+        <div class="yaflex">
+            
+        <p class="cardbaslik ortaiki ortadort inceparagraf" style="max-width: 100%; text-alignement: ">Biyolojik Bilimler Eğitim Destek Platformu (BioBiForm), biyolojik bilimler öğrencilerinin, bu alanda çalışan şirketlerin hazırlamış olduğu uygulamalı ve teorik içeriklere ulaşmalarını sağlamak amacıyla Türkiye Biyologlar Derneği ve biyolojik bilimler alanında çalışan firmaların işbirliği ile kurulan bir platformdur. Platformun; Online eğitim sürecinde öğrencilerin özellikle alamadıkları uygulamalı derslere katkı sağlaması ve öğrencilerin kurumsal hayatı tanımasını sağlayarak üniversite ve sektör arasında köprü kurması hedeflenmektedir.
+<br><br>
+Platform; öncelikli olarak lisans öğrencilerine online ve yüzyüze eğitimler sunarak onların mesleki gelişimine katkı sağlamaktadır. 
+Firmalar site üzerinden açacakları online kurs, yüz yüze “workshop” ve eğitimlerin detaylarını paylaşarak katılım için belirli sayıda öğrenci kontenjanı sunacaklardır. Kontenjanlar şirketler tarafından belirlenen kriterleri sağlayanların önceliklendirilmesine göre doldurulacaktır.
+<br><br>
+Ön Önceliklendirme kriterleri:<br>
+-	TBD Junior Biologists Programı üyeleri siteden öncelikli olarak yararlanabileceklerdir.<br>
+-	İkametgah ve okuduğu il bazında destek alması gereken öğrenciler önceliklendirilecektir. <br>
+-	3 ve 4. sınıfta öğrenim gören ve laboratuvar deneyimi olmayan öğrenciler  öncelikli olacaklardır. 1. ve 2. sınıf öğrencilerinin ilk etapta sistemde açılacak olan online eğitimleri almaları beklenmektedir.
+	</p>
+	<h4 class="cardbaslik ortaiki ortadort kalinparagraf" style="max-width: 100%;">
+ 	  Türkiye Biyologlar Derneği’nin Programla Bağlantısı ve Programa Bakış Açısı
+	</h4>
+	<p class="cardbaslik ortaiki ortadort inceparagraf" style="max-width: 100%;">
+  Türkiye Biyologlar Derneği, biyologların mesleki haklarının uluslararası standartlara uygun hale gelmesini, ulusal biyolojik sorunların çözümlenmesini, ülkemizin biyolojik zenginliklerinin korunmasını, biyolojik kaynaklar ve sorunları için araştırma sahaları açılmasına yönelik çalışmalar yapmayı, eksik kalan gözlem ve araştırmaların gerçekleştirilmesini sağlamak amacıyla kurulmuş bir STK olup, çalışmalarını 1975 yılından beri yürütmektedir. Online eğitimin özellikle son dört senede farklı sebeplerle aktif olarak kullanılmasının ardından özellikle uygulamalı eğitimlerde yetersizlikler ortaya çıkmıştır.<br><br>
+  Türkiye Biyologlar Derneği kendi kuruluş amacı ve çalışma alanları kapsamında olan problemi çözüme kavuşturmak amacıyla çalışmalarını yönlendirmiştir. Türkiye’nin en fazla üyeye sahip biyolojik bilimler STK’sı olarak  uygulamalı ve online eğitime destek verilmesi için özel ve kamu kuruluşlarıyla birlikte çalışmaya açıktır. 
+	</p>
+      </div>
+      </div>
+      <a id="etkinlikler"> </a>
+      <div class="w3-row-padding asdasd" id="asdasd">
+      <h3 class="w3-border-bottom w3-border-white pad10 ortaiki cardbaslik" style="margin-top: 50px; max-width: 100%;">
+          Deneyler
+        </h3>
+        <p class="cardbaslik ortaiki ortadort">Deneyleri aşağıda görüntüleyebilirsiniz.</p>
+        <p class="cardbaslik ortaiki">Eklenmiş deney bulunamadı.</p>
+      </div>
+      
+      <div class="w3-row-padding asdasd ortadort" id="asdasdasd">
+      <h3 class="w3-border-bottom w3-border-white pad10 ortaiki cardbaslik" style="margin-top: 50px; max-width: 100%;">
+          Online Etkinlikler
+        </h3>
+        <p class="cardbaslik ortaiki">Online etkinlikleri aşağıda görüntüleyebilirsiniz.</p>
+        <p class="cardbaslik ortaiki">Eklenmiş etkinlik bulunamadı.</p>
+      </div>
+                    
+      <a id="partnerler"> </a>
+      <div class="w3-row-padding asdasd" id="partnerlerimiz">
+      <h3 class="w3-border-bottom w3-border-white pad10 ortaiki cardbaslik" style="margin-top: 50px; max-width: 100%;">
+          Partnerlerimiz
+        </h3>
+        <div class="yaflex">
+					<div class="wrapper">
+    				 <div class="slider">
+          		<div class="slide">
+                <img src="https://cdn.glitch.global/440e545c-6bcc-4068-885f-5804db0f28d2/bioeksen%20svg.svg?v=1682795913887">
+                <img src="https://cdn.glitch.global/440e545c-6bcc-4068-885f-5804db0f28d2/Diagnotech%20svg.svg?v=1682795914749">
+                <img src="https://cdn.glitch.global/440e545c-6bcc-4068-885f-5804db0f28d2/Elm%20GENOM%E2%94%80%E2%96%91CS%20svg.svg?v=1682795915465">
+                <img src="https://cdn.glitch.global/440e545c-6bcc-4068-885f-5804db0f28d2/Genzbio%20svg.svg?v=1682795916123">
+                <img src="https://cdn.glitch.global/440e545c-6bcc-4068-885f-5804db0f28d2/Vision%20Svg.svg?v=1682795916707">
+                <img src="https://cdn.glitch.global/440e545c-6bcc-4068-885f-5804db0f28d2/WHOZYME%20svg.svg?v=1682795917296">
+           		</div>
+              <div class="slide">
+                <img src="https://cdn.glitch.global/440e545c-6bcc-4068-885f-5804db0f28d2/bioeksen%20svg.svg?v=1682795913887">
+                <img src="https://cdn.glitch.global/440e545c-6bcc-4068-885f-5804db0f28d2/Diagnotech%20svg.svg?v=1682795914749">
+                <img src="https://cdn.glitch.global/440e545c-6bcc-4068-885f-5804db0f28d2/Elm%20GENOM%E2%94%80%E2%96%91CS%20svg.svg?v=1682795915465">
+                <img src="https://cdn.glitch.global/440e545c-6bcc-4068-885f-5804db0f28d2/Genzbio%20svg.svg?v=1682795916123">
+                <img src="https://cdn.glitch.global/440e545c-6bcc-4068-885f-5804db0f28d2/Vision%20Svg.svg?v=1682795916707">
+                <img src="https://cdn.glitch.global/440e545c-6bcc-4068-885f-5804db0f28d2/WHOZYME%20svg.svg?v=1682795917296">
+           		</div>
+     				</div>
+					</div>
+      </div>
+      
+      
+      <a id="sss"> </a>
+      <div class="w3-row-padding asdasd" id="sssss">
+      <h3 class="w3-border-bottom w3-border-white pad10 ortaiki cardbaslik" style="margin-top: 50px; max-width: 100%;">
+          Sıkça Sorulan Sorular (SSS)
+        </h3>
+        <div class="yaflex">
+            <button class="collapsible">1. BioBiForm Nedir?</button>
+<div class="content">
+  <p>Biyolojik Bilimler Eğitim Destek Platformu (BioBiForm); biyolojik bilimler öğrencilerinin, bu alanda çalışan şirketlerle birlikte alanında yetkin kişilerin hazırlamış olduğu uygulamalı ve teorik içeriklere ulaşmalarını sağlamak amacıyla kurulan bir eğitim destek platformudur. Platformun ana hedefi öncelikli olarak lisans ögrencilerinin mesleki gelişimine katkı sağlamaktır. Ek olarak mezun, yüksek lisans ve doktora ögrencileri de platformu kullanabilir, kurum/kuruluşlar tarafından değerlendirilebilirler.</p>
+</div>
+<button class="collapsible">2. BioBiForm kimler tarafından ve ne zaman kurulmuştur?</button>
+<div class="content">
+  <p>BioBiForm Nisan 2023’te Türkiye Biyologlar Derneği, TBD Junior Biologists öğrenci topluluğu ve biyolojik bilimler alanında çalışan firmaların işbirliği ile kurulmuştur.</p>
+</div>
+<button class="collapsible">3. Biyolojik Bilimler Destek Platformunda hangi eğitimler verilmektedir?</button>
+<div class="content">
+  <p>BioBiForm sisteminde, kişi veya kurum/kuruluşlar tarafından açılan online ve yüzyüze eğitimlere erişilebilinir. Derslerin içerikleri eğitimi veren kişi ya da kurum tarafından belirlenmektedir.</p>
+</div>
+<button class="collapsible">4. Lisans öğrencisi değilim, yine de kayıt olabilir miyim?</button>
+<div class="content">
+  <p>Program online ve yüzyüze etkinlikleri içermekte, kayıt olabilir ve kontenjanlara bağlı olarak açılacak eğitimlere başvurabilirsiniz. Ancak yüz yüze eğitimler için özellikle lisans öğrencilerinin önceliklendirileceğini belirtmek isteriz.</p>
+</div>
+<button class="collapsible">5. Türkiye Biyologlar Derneği ve Junior Biologist Programı Nedir?</button>
+<div class="content">
+  <p>Junior Biologists programı Türkiye Biyologlar Derneği tarafından 2020 yılında başlatılan TBD'nin öğrenci topluluğudur. 1200 üyesi bulunan topluluk Türkiye'nin çeşitli yerlerinden 84 farklı öğrenci topluluğu ile işbirliği içerisindedir. Amacı, tüm Türkiye’deki Biyolojik Bilimlerde okuyan öğrencilerin aynı şartlarda eğitim almalarını, iş hayatına ve sektöre en iyi şekilde hazırlanarak mezun olmalarını sağlamaktır. Bu program kapsamında hem yüz yüze hem de teorik içerikli çeşitli organizasyonlar yapmaktadır. TBD JB yönetim ekibi ve üyelerinin bir kısmı bu sitenin organize edilmesinde ve öğrenciler arasında duyurulmasında aktif olarak görev almaktadır. TBD Junior Biologist programına üyelik etkinliklere katılım için öncelik sağlayabilir.</p>
+</div>
+      </div>
+      </div>
+    
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
+</script>
+    
+     <div class="w3-row-padding"></div>      
+      
+      <div class="w3-row-padding w3-grayscale center"></div>
+
+      <!-- Contact Section -->
+
+      </div>
+
+      <!-- Image of location/map -->
+
+      <div></div></div>
+      <!-- End page content -->
+  </body>
+</html>
