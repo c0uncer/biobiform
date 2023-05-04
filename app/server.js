@@ -1,6 +1,7 @@
 const firebase = require('firebase/app');
 require('firebase/auth');
 const express = require("express");
+const crypto = require('crypto');
 const app = express();
 const path = require("path");
 const db = require("quick.db");
@@ -18,6 +19,7 @@ const dreams = [
 app.use(express.static("public"));
 
 var bodyParser = require('body-parser')
+app.use(express.json({ limit: '14mb' }));
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
@@ -65,11 +67,25 @@ app.get("/silsil", (request, response) => {
   response.send(".str");
 });
 
+app.get("/kulsilsil", (request, response) => {
+  db.delete("kullanicilar");
+  db.set("kullanicilar", []);
+  response.send(".str");
+});
+
 app.get("/onsilsil", (request, response) => {
   db.delete("onlineetkinlik");
   db.set("onlineetkinlik.veri", []);
   db.set("onlineetkinlik.basliklar", []);
   response.send(".str");
+});
+
+app.post('/kullanicilarapi', function(req, res) {
+    var kveri = req.body.veri;
+  
+    db.push("kullanicilar", kveri);
+
+    res.json(dreams);
 });
 
 app.post('/veritabani', function(req, res) {
@@ -794,6 +810,10 @@ app.get("/kartlar", (request, response) => {
   response.send(db.get("veriler"));
 });
 
+app.get("/tumkullanici", (request, response) => {
+  response.send(db.get("kullanicilar"));
+});
+
 app.get("/etkinlikkartlari", (request, response) => {
   response.send(db.get("onlineetkinlik"));
 });
@@ -804,11 +824,104 @@ app.get("/etkinlikkartlari", (request, response) => {
   response.send(y.toString());
 });*/
 
+app.post('/api/hash', (req, res) => {
+  const password = req.body.sifre;
+
+  const hash = crypto.createHash('sha256');
+  hash.update(password);
+  const passwordHash = hash.digest('hex');
+
+  // Hash değerini istemciye gönder
+  res.send(passwordHash);
+});
+
+app.post('/girisapi', (req, res) => {
+  const password = req.body.sifre;
+  const eposta = req.body.eposta
+  
+  let kullanicilar = db.get("kullanicilar")
+  let kullanici = kullanicilar.find(k => k.eposta === eposta);
+  
+  let kullaniciHash = kullanici ? kullanici.sifre : "yok";
+  if(kullaniciHash == password)
+    {
+      res.send("evet")
+    }
+  else{
+    res.send("hayir")
+  }
+  // Hash değerini istemciye gönder
+});
+
+app.post('/bilgiapi', (req, res) => {
+  const eposta = req.body.eposta
+  
+  let kullanicilar = db.get("kullanicilar")
+  let kullanici = kullanicilar.find(k => k.eposta === eposta);
+  
+  let kullaniciIsim = kullanici ? kullanici.isim : "";
+  let kullaniciPosta = kullanici ? kullanici.eposta : "";
+  let kullaniciOkul = kullanici ? kullanici.okul : "";
+  let kullaniciSinif = kullanici ? kullanici.sinif : "";
+  let kullaniciBolum = kullanici ? kullanici.bolum : "";
+  let kullaniciCV = kullanici ? kullanici.cv : {"filename": "", "type": "", "data": ""};
+  
+  let veri = 
+      {
+        "isim": kullaniciIsim,
+        "eposta": kullaniciPosta,
+        "okul": kullaniciOkul,
+        "sinif": kullaniciSinif,
+        "bolum": kullaniciBolum,
+        "cv": kullaniciCV
+      }
+  
+  res.send(veri);
+  // Hash değerini istemciye gönder
+});
+
+app.post('/bilgiguncelle', (req, res) => {
+  const eposta = req.body.eposta
+  const isim = req.body.isim
+  const okul = req.body.okul
+  const bolum = req.body.bolum
+  const sinif = req.body.sinif
+  
+  let kullanicilar = db.get("kullanicilar")
+  let kullanici = kullanicilar.find(k => k.eposta === eposta);
+  
+	if (kullanici) {
+  	kullanici.isim = isim;
+    kullanici.okul = okul;
+    kullanici.bolum = bolum;
+    kullanici.sinif = sinif;
+	}
+  
+  db.set("kullanicilar", kullanicilar)
+  res.send("tamam");
+  // Hash değerini istemciye gönder
+});
+
+app.post('/cvguncelle', (req, res) => {
+  const eposta = req.body.eposta
+  const cv = req.body.cv
+  
+  let kullanicilar = db.get("kullanicilar")
+  let kullanici = kullanicilar.find(k => k.eposta === eposta);
+  
+	if (kullanici) {
+  	kullanici.cv = JSON.parse(cv);
+	}
+  
+  db.set("kullanicilar", kullanicilar)
+  res.send("tamam");
+  // Hash değerini istemciye gönder
+});
+
 // listen for requests :)
 const listener = app.listen(process.env.PORT, () => {
   console.log("Your app is listening on port " + listener.address().port);
 });
-
 
 const firebaseConfig = {
   apiKey: "AIzaSyDPuMRLCdcb4tTkIENv0SHNzD34fgc-Oxs",

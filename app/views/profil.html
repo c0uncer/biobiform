@@ -139,9 +139,27 @@ img {vertical-align: middle;}
   </head>
   <body>
     <script src="/script.js" defer></script>
+    <script src="/profil.js" defer></script>
     
     <div id="white-background">
-</div>   
+</div>
+<div id="dlgbox">
+    <div id="dlg-header">CV Dosyanız</div>
+    <div id="dlg-body">Cvnizi indirin veya yeni bir cv ekleyin.
+    <input
+            class="w3-input w3-section w3-border"
+            type="file"
+            placeholder="CV"
+            required
+            id="cv"
+          />
+      <a href="#" download="file.docx" id="download-link">Şuanki CVyi İndir</a>
+    </div>
+    <div id="dlg-footer">
+        <button class="w3-button w3-white w3-section gitbuton secbtn" onclick="dlgCancel()">Tamam</button>
+    </div>
+</div>
+    
 <div id="basvurdialog">
     <div id="bvr-header">Başvuru Yap</div>
     <div id="bvr-body"><p id="bvr-alt" style="margin-top: -2px;">
@@ -227,6 +245,7 @@ img {vertical-align: middle;}
 
     <!-- Page content -->
     <div class="w3-content w3-padding mt10" style="max-width: 100%; width: 1160px">
+     <a href="#" download="file.docx" id="download-lin"></a>
       <div class="w3-responsive">
         <div class="w3-left avatar">
           <div>
@@ -235,13 +254,14 @@ img {vertical-align: middle;}
           </div>
         </div>
         <div class="w3-left" style="margin-left: 40px; margin-top: 10px;">
-            <p class="title" style="font-size: 18px; margin-bottom: 5px;">Kullanıcının Adı</p>
-            <p class="title" style="font-size: 14px; margin-top: 0px; margin-bottom: 5px;">kullanici@gmail.com</p>
-            <p class="title" style="font-size: 15px; margin-top: 0px; margin-bottom: 5px;">Kullanıcının Okuduğu Okul Adı</p>
-            <p class="title" style="font-size: 15px; margin-top: 0px; margin-bottom: 5px;">1. Sınıf</p>
-            <p class="title" style="font-size: 15px; margin-top: 0px;">Bölüm Adı</p>
+            <p id="isim" class="title" style="font-size: 18px; margin-bottom: 5px;"></p>
+            <p id="eposta" class="title" style="font-size: 14px; margin-top: 0px; margin-bottom: 5px;"></p>
+            <p id="okul" class="title" style="font-size: 15px; margin-top: 0px; margin-bottom: 5px;"></p>
+            <p id="sinif" class="title" style="font-size: 15px; margin-top: 0px; margin-bottom: 5px;"></p>
+            <p id="bolum" class="title" style="font-size: 15px; margin-top: 0px;"></p>
         </div>
        <div class="w3-left" style="margin-left: 140px; margin-top: 20px;">
+          <a onclick="showDialog2()" style="font-size: 20px; display: inline-block;"><i class="uil uil-file icon"></i></a> 
          <a onclick="BasvuruBilgisi2()" style="font-size: 20px; display: inline-block;"><i class="uil uil-edit icon"></i></a> 
          <a onclick="Cikis()" style="font-size: 23px; display: inline-block;"><i class="uil uil-signout icon"></i></a> 
         </div>
@@ -313,6 +333,13 @@ img {vertical-align: middle;}
       <!-- End page content -->
     
     <script>
+      
+if(!localStorage.getItem("girisb").includes("@") || !localStorage.getItem("girisb").includes("."))
+  {
+    window.location.href = "/giris"
+  }
+      
+      
 document.getElementById("varsayilan").click();
 
 function openCity(evt, cityName) {

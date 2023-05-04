@@ -142,6 +142,7 @@ for (iii = 0; iii < collll.length; iii++) {
     mailci = this.previousElementSibling.id;
     deneyb = this.parentElement.previousElementSibling.previousElementSibling.innerText;
     bvrBilgiCon.style.display = 'block';
+    bvrMail.style.display = 'block';
     gonderbtn.innerHTML = 'Gönder';
     basliktxt.innerHTML = 'Başvuru Yap';
     alttxt.innerHTML = 'Aşağıdaki bilgileri doldurun.';
@@ -340,13 +341,21 @@ async function bvrOK(){
     if(gonderbtn.innerText == "Kaydet" || bvrBilgi.checked)
     {
       if (typeof(Storage) !== "undefined") {
-  			localStorage.setItem("isim", bvrIsim.value);
-        localStorage.setItem("eposta", bvrMail.value);
-  			localStorage.setItem("okul", bvrOkul.value);
-  			localStorage.setItem("bolum", bvrBolum.value);
-  			localStorage.setItem("sinif", bvrSinif.value);
+        let eposta = localStorage.getItem("girisb");
+  			let isim = bvrIsim.value;
+  			let okul = bvrOkul.value;
+  			let bolum = bvrBolum.value;
+  			let sinif = bvrSinif.value;
+          await fetch('/bilgiguncelle', {
+ 						method: 'POST',
+  					headers: {
+   				 'Content-Type': 'application/json'
+  					},
+  					body: `{"eposta": "${eposta}", "isim": "${isim}", "okul": "${okul}", "bolum": "${bolum}", "sinif": "${sinif}"}`
+						})
         bvrHide();
-			}
+        window.location.reload();			
+      }
     }
   else
     {
@@ -362,6 +371,7 @@ async function bvrOK(){
 });
 }
 }
+
 function disableScroll() {
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop; 
     let scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
@@ -376,10 +386,11 @@ function enableScroll() {
 
 function BasvuruBilgisi(){
   bvrBilgiCon.style.display = 'none';
+  bvrMail.style.display = 'none';
   gonderbtn.innerHTML = 'Kaydet';
   basliktxt.innerHTML = 'Başvuru Bilgileri';
-  alttxt.innerHTML = 'Başvuru Bilgilerinizi önceden kaydedin.';
-  if(localStorage.getItem("girisb") == "evet")
+  alttxt.innerHTML = 'Başvuru bilgilerinizi düzenleyin.';
+  if(localStorage.getItem("girisb").includes("@") && localStorage.getItem("girisb").includes("."))
     {
         window.location.href = "/profil"
     }
@@ -390,9 +401,10 @@ function BasvuruBilgisi(){
 
 function BasvuruBilgisi2(){
   bvrBilgiCon.style.display = 'none';
+  bvrMail.style.display = 'none';
   gonderbtn.innerHTML = 'Kaydet';
   basliktxt.innerHTML = 'Başvuru Bilgileri';
-  alttxt.innerHTML = 'Başvuru Bilgilerinizi önceden kaydedin.';
+  alttxt.innerHTML = 'Başvuru bilgilerinizi düzenleyin.';
   showBasvur();
 }
 

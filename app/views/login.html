@@ -13,7 +13,7 @@
          
 </head>
 <body>
-    
+    <script src="/authsaglayici.js" defer></script>
     <div class="container">
         <div class="forms">
             <div class="form login">
@@ -21,11 +21,11 @@
 
                 <form action="#">
                     <div class="input-field">
-                        <input type="text" placeholder="E-Posta adresi" required>
+                        <input id="geposta" type="text" placeholder="E-Posta adresi" required>
                         <i class="uil uil-envelope icon"></i>
                     </div>
                     <div class="input-field">
-                        <input type="password" class="password" placeholder="Şifre" required>
+                        <input id="gsifre" type="password" class="password" placeholder="Şifre" required>
                         <i class="uil uil-lock icon"></i>
                         <i class="uil uil-eye-slash showHidePw"></i>
                     </div>
@@ -39,7 +39,7 @@
                         <a href="#" class="text">Şifrenizi mi unuttunuz?</a><br><br>
                     </div>
                     <div class="input-field button">
-                        <input type="button" onclick="Giris()" value="Giriş Yap">
+                        <input type="button" onclick="GirisYap()" value="Giriş Yap">
                     </div>
                 </form>
 
@@ -59,28 +59,32 @@
 
                 <form action="#">
                     <div class="input-field">
-                        <input type="text" placeholder="Kullanıcı adı" required>
+                        <input id="isim" type="text" placeholder="İsim Soyisim" required>
                         <i class="uil uil-user"></i>
                     </div>
                     <div class="input-field">
-                        <input type="text" placeholder="E-Posta adresi" required>
+                        <input id="eposta" type="text" placeholder="E-Posta adresi" required>
                         <i class="uil uil-envelope icon"></i>
                     </div>
                     <div class="input-field">
-                        <input type="password" class="password" placeholder="Şifre" required>
+                        <input id="sifre" type="password" class="password" placeholder="Şifre" required>
                         <i class="uil uil-lock icon"></i>
                     </div>
                     <div class="input-field">
-                        <input type="text" placeholder="Okul" required>
+                        <input id="okul" type="text" placeholder="Okul" required>
                         <i class="uil uil-building icon"></i>
                     </div>
                     <div class="input-field">
-                        <input type="text" placeholder="Sınıf" required>
+                        <input id="sinif" type="text" placeholder="Sınıf" required>
                         <i class="uil uil-list-ol-alt icon"></i>
                     </div>
                      <div class="input-field">
-                        <input type="text" placeholder="Bölüm" required>
+                        <input id="bolum" type="text" placeholder="Bölüm" required>
                         <i class="uil uil-book-alt icon"></i>
+                    </div>
+                    <div class="input-field">
+                        <input id="cv" type="file" placeholder="Bölüm" required>
+                        <i class="uil uil-file icon"></i>
                     </div>
 
                     <div class="checkbox-text">
@@ -91,7 +95,7 @@
                     </div>
 
                     <div class="input-field button">
-                        <input type="button" onclick="Giris()" value="Kayıt Ol">
+                        <input type="button" onclick="KayitOl()" value="Kayıt Ol">
                     </div>
                 </form>
 
@@ -139,12 +143,6 @@
     login.addEventListener("click", ( )=>{
         container.classList.remove("active");
     });
-  
-  function Giris()
-{
-    localStorage.setItem("girisb", "evet")
-    window.location.href = "/profil"
-}
 </script>
 </body>
 </html>
