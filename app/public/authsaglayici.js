@@ -46,6 +46,8 @@ async function Sifrele(sifrelenecek = ""){
 }
 
 async function KayitOl(){
+  if(isim.value && eposta.value && sifre.value && okul.value && bolum.value && cvData)
+    {
     await Sifrele(sifre.value)
     let res = await fetch("https://turk-biyologlar-dernegi.glitch.me/kullanicilarapi", {
     method: 'POST',
@@ -63,6 +65,10 @@ async function KayitOl(){
     }}`,
 });
     window.location.reload();
+}
+  else{
+    alert("Lütfen tüm bilgileri doldurun.")
+  }
 }
 
 async function GirisYap(){

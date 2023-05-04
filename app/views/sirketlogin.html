@@ -13,7 +13,7 @@
          
 </head>
 <body>
-    
+    <script src="/sirketgiris.js" defer></script>
     <div class="container">
         <div class="forms">
             <div class="form login">
@@ -21,11 +21,11 @@
 
                 <form action="#">
                     <div class="input-field">
-                        <input type="text" placeholder="E-Posta adresi" required>
+                        <input id="geposta" type="text" placeholder="E-Posta adresi" required>
                         <i class="uil uil-envelope icon"></i>
                     </div>
                     <div class="input-field">
-                        <input type="password" class="password" placeholder="Şifre" required>
+                        <input id="gsifre" type="password" class="password" placeholder="Şifre" required>
                         <i class="uil uil-lock icon"></i>
                         <i class="uil uil-eye-slash showHidePw"></i>
                     </div>
@@ -38,7 +38,7 @@
                         
                     </div>
                     <div class="input-field button">
-                        <input type="button" onclick="Giris()" value="Giriş Yap">
+                        <input type="button" onclick="SirketVerileri()" value="Giriş Yap">
                     </div>
                 </form>
 
@@ -80,7 +80,7 @@
                     </div>
 
                     <div class="input-field button">
-                        <input type="button" onclick="Giris()" value="Kayıt Ol">
+                        <input type="button" onclick="SirketVerileri()" value="Kayıt Ol">
                     </div>
                 </form>
 
@@ -129,10 +129,6 @@
         container.classList.remove("active");
     });
   
-  function Giris()
-{
-    window.location.href = "/sirketler/diagnotech/panel"
-}
 </script>
 </body>
 </html>

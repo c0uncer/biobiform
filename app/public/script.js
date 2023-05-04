@@ -43,6 +43,7 @@ await fetch("https://turk-biyologlar-dernegi.glitch.me/kartlar")
     htmlCode =
     htmlCode +
     `   
+
 <div class="card">
           <div class="card__image-container">
             <img
@@ -146,13 +147,39 @@ for (iii = 0; iii < collll.length; iii++) {
     gonderbtn.innerHTML = 'Gönder';
     basliktxt.innerHTML = 'Başvuru Yap';
     alttxt.innerHTML = 'Aşağıdaki bilgileri doldurun.';
-    showBasvur();
+    
+    BasvuruyuYap()
   });
 }
 }
 
+EtkinlikKontrol();
 GirisKontrol();
-EtkinlikKontrol()
+
+async function BasvuruyuYap(){
+if(!localStorage.getItem("girisb").includes("@") || !localStorage.getItem("girisb").includes(".")  || localStorage.getItem("girisb").includes("--sirket--"))
+  {
+  return;
+  }    
+  
+    let index = jsonVeri.basliklar.indexOf(deneyb)
+    let res = await fetch("/basvurularapi", {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: `{"veri": {
+    "deney": "${deneyb}",
+    "firma": "${jsonVeri.firmalar[index]}",
+    "yer": "${jsonVeri.yerler[index]}",
+    "zaman": "${jsonVeri.tarihler[index]} -- ${jsonVeri.saatler[index]}",
+    "durum": "Onay Bekliyor",
+    "times": "${jsonVeri.tsler[index]}",
+    "girisb": "${localStorage.getItem("girisb")}"
+    }}`,
+});
+    window.location.reload();
+}
 
 async function EtkinlikKontrol(){
 await fetch("https://turk-biyologlar-dernegi.glitch.me/etkinlikkartlari")
@@ -390,7 +417,7 @@ function BasvuruBilgisi(){
   gonderbtn.innerHTML = 'Kaydet';
   basliktxt.innerHTML = 'Başvuru Bilgileri';
   alttxt.innerHTML = 'Başvuru bilgilerinizi düzenleyin.';
-  if(localStorage.getItem("girisb").includes("@") && localStorage.getItem("girisb").includes("."))
+  if(localStorage.getItem("girisb") && localStorage.getItem("girisb").includes("@") && localStorage.getItem("girisb").includes(".") && localStorage.getItem("girisb").includes("--sirket--"))
     {
         window.location.href = "/profil"
     }

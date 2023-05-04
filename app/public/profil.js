@@ -6,6 +6,7 @@ const bolum = document.getElementById("bolum");
 const cvin = document.getElementById("cv");
 const downloadLink = document.getElementById('download-link');
 const downloadLin = document.getElementById('download-lin');
+const basvurular = document.getElementById("London");
 let cv;
 
 async function BilgiAl(){
@@ -121,4 +122,71 @@ async function CVGuncelle(eposta="", cv={ filename: "", type: "", data: "" })
     body: JSON.stringify({ eposta: eposta, cv: cvt })
   })
   //window.location.reload();	
+}
+
+
+let jsonVerii;
+let posta = localStorage.getItem("girisb")
+async function Load(){
+  await fetch("/tumbasvuru")
+            .then((response) => response.json())
+            .then((json) => jsonVerii = json);
+          
+          
+            let htmlCode =
+    `
+<table class="w3-table w3-bordered w3-border">
+<tbody><tr>
+<th >Deney</th>
+<th >Firma</th>
+<th >Yer</th>
+<th >Zaman</th>
+<th>Durum</th>
+</tr>
+            
+  `;
+          jsonVerii.forEach(function(s) {
+            if(s.girisb != posta)
+             {
+               return;
+             }
+    htmlCode =
+    htmlCode +
+    `   
+<tr><td>${s.deney}</td><td>${s.firma}</td><td>${s.yer}</td><td>${s.zaman}</td><td>${s.durum}<a id="${s.deney}" class="w3-btn btnsmall w3-red w3-round-large w3-right silicii">Sil</a></td></tr>
+  `;
+
+            
+});
+
+ htmlCode = htmlCode + "</tbody></table> ";
+
+  basvurular.innerHTML = htmlCode;
+  
+
+  
+  var coll = document.getElementsByClassName("silicii");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    var indexx = this.id;
+    silsil(indexx);
+  });
+}
+}
+
+Load();
+
+
+async function silsil(ind){
+    let maill = localStorage.getItem("girisb");
+    let res = await fetch("/basvurusilapi", {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: `{"deney": "${ind}", "bilgi": "${maill}"}`,
+});
+    window.location.reload();
 }

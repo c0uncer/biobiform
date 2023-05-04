@@ -46,7 +46,7 @@ app.get("/profil", (request, response) => {
   response.sendFile(__dirname + "/views/profil.html");
 });
 
-app.get("/sirketler/diagnotech/panel", (request, response) => {
+app.get("/sirketler/sirket/panel", (request, response) => {
   response.sendFile(__dirname + "/views/diagnotech.html");
 });
 
@@ -84,6 +84,14 @@ app.post('/kullanicilarapi', function(req, res) {
     var kveri = req.body.veri;
   
     db.push("kullanicilar", kveri);
+
+    res.json(dreams);
+});
+
+app.post('/basvurularapi', function(req, res) {
+    var kveri = req.body.veri;
+  
+    db.push("basvurular", kveri);
 
     res.json(dreams);
 });
@@ -814,6 +822,10 @@ app.get("/tumkullanici", (request, response) => {
   response.send(db.get("kullanicilar"));
 });
 
+app.get("/tumbasvuru", (request, response) => {
+  response.send(db.get("basvurular"));
+});
+
 app.get("/etkinlikkartlari", (request, response) => {
   response.send(db.get("onlineetkinlik"));
 });
@@ -914,6 +926,25 @@ app.post('/cvguncelle', (req, res) => {
 	}
   
   db.set("kullanicilar", kullanicilar)
+  res.send("tamam");
+  // Hash değerini istemciye gönder
+});
+
+app.post('/basvurusilapi', (req, res) => {
+  const deney = req.body.deney
+  const bilgi = req.body.bilgi
+  
+  let basvurular = db.get("basvurular")
+  let kullanici = basvurular.find(k => k.deney === deney && k.girisb === bilgi);
+  
+	if (kullanici) {
+    const indexx = basvurular.indexOf(kullanici);
+if (indexx > -1) { // only splice array when item is found
+  basvurular.splice(indexx, 1); // 2nd parameter means remove one item only
+}
+	}
+  
+  db.set("basvurular", basvurular)
   res.send("tamam");
   // Hash değerini istemciye gönder
 });

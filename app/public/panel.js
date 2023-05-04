@@ -15,6 +15,8 @@ const efirmaB = document.getElementById("efirma");
 const linkB = document.getElementById("link");
 const etarihB = document.getElementById("etarih");
 const eilposta = document.getElementById("eeposta");
+const firmay = document.getElementById("firmay");
+const epostay = document.getElementById("epostay");
 
 let resim;
 let eresim;

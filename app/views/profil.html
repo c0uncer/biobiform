@@ -275,18 +275,7 @@ img {vertical-align: middle;}
 </div>
 
 <div id="London" class="tabcontent">
-      <table class="w3-table w3-bordered w3-border">
-<tbody><tr>
-<th >Deney</th>
-<th >Firma</th>
-<th >Yer</th>
-<th >Zaman</th>
-<th>Durum</th>
-</tr><tr><td>Deney Adı 1</td><td>Diagnotech</td><td>asdasdasasdasdasdasd</td><td>02.05.2023 - 20.00</td><td>Onaylandı<a class="w3-btn btnsmall w3-red w3-round-large w3-right">İptal</a></td></tr>
-<tr><td>2 Deney Adı</td><td>Vision</td><td>asdasasddssdsa</td><td>02.05.2023 - 20.00</td><td>Onay Bekliyor<a class="w3-btn btnsmall w3-red w3-round-large w3-right">İptal</a></td></tr>
-<tr><td>Adı Deney 3</td><td>Genzbio</td><td>27sdsddssd0</td><td>26.04.2023 - 20.00</td><td>Onaylanmadı<a class="w3-btn btnsmall w3-red w3-round-large w3-right">Sil</a></td></tr>
-<tr><td>Deney 4 Adı</td><td>BiEksen</td><td>sdsdsadasdad</td><td>26.04.2023 - 20.00</td><td>Onaylandı<a class="w3-btn btnsmall w3-red w3-round-large w3-right">Sil</a></td></tr>
-</tbody></table> </div>
+</div>
 
 <div id="Paris" class="tabcontent">
       <table class="w3-table w3-bordered w3-border">
@@ -334,7 +323,7 @@ img {vertical-align: middle;}
     
     <script>
       
-if(!localStorage.getItem("girisb").includes("@") || !localStorage.getItem("girisb").includes("."))
+if(!localStorage.getItem("girisb").includes("@") || !localStorage.getItem("girisb").includes(".")  || localStorage.getItem("girisb").includes("--sirket--"))
   {
     window.location.href = "/giris"
   }

@@ -138,10 +138,72 @@ img {vertical-align: middle;}
 </style>
   </head>
   <body>
-    <script src="/script.js" defer></script>
+    <script src="/sirket.js" defer></script>
     
     <div id="white-background">
-</div>   
+</div> 
+    
+
+<div id="dlgbox">
+    <div id="dlg-header">Yeni İlan Ekle</div>
+    <div id="dlg-body">İlan bilgilerini doldurun.
+    <input
+            class="w3-input w3-section w3-border"
+            type="text"
+            placeholder="Başlık"
+            required
+            name="Baslik"
+            id="baslik"
+          />
+          <input
+            class="w3-input w3-section w3-border"
+            type="text"
+            placeholder="Açıklama"
+            required
+            name="Aciklama"
+            id="aciklama"
+          />
+          <input
+            class="w3-input w3-section w3-border"
+            type="text"
+            placeholder="Düzenleyen Firma"
+            required
+            name="Firma"
+            id="firma"
+          />
+          <input
+            class="w3-input w3-section w3-border"
+            type="text"
+            placeholder="Tarih ve Saat"
+            max="2999-06-14T00:00"
+            required
+            name="Tarih"
+            id="tarih"
+            onfocus="(this.type='datetime-local')"
+          />
+          <input
+            class="w3-input w3-section w3-border"
+            type="text"
+            placeholder="Yer"
+            required
+            name="Yer"
+            id="yer"
+          />
+          <input
+            class="w3-input w3-section w3-border"
+            type="file"
+            placeholder="Resim"
+            required
+            name="Yer"
+            id="resim"
+          />
+    </div>
+    <div id="dlg-footer">
+        <button class="w3-button w3-section gitbuton pribtn" onclick="dlgOK()">Ekle</button>
+        <button class="w3-button w3-white w3-section gitbuton secbtn" onclick="dlgCancel()">İptal</button>
+    </div>
+</div>
+    
 <div id="basvurdialog">
     <div id="bvr-header">Başvuru Yap</div>
     <div id="bvr-body"><p id="bvr-alt" style="margin-top: -2px;">
@@ -235,69 +297,28 @@ img {vertical-align: middle;}
           </div>
         </div>
         <div class="w3-left" style="margin-left: 40px; margin-top: 10px;">
-            <p class="title" style="font-size: 18px; margin-bottom: 5px;">Diagnotech Biotechnology&Life Inc.</p>
-            <p class="title" style="font-size: 14px; margin-top: 0px; margin-bottom: 5px;">diagnotech@gmail.com</p>
+            <p id="firmay" class="title" style="font-size: 18px; margin-bottom: 5px;"> </p>
+            <p id="epostay" class="title" style="font-size: 14px; margin-top: 0px; margin-bottom: 5px;"> </p>
         </div>
        <div class="w3-left" style="margin-left: 140px; margin-top: 20px;">
-         <a onclick="BasvuruBilgisi2()" style="font-size: 20px; display: inline-block;"><i class="uil uil-edit icon"></i></a> 
          <a onclick="Cikis()" style="font-size: 23px; display: inline-block;"><i class="uil uil-signout icon"></i></a> 
         </div>
       </div>
       <div class="w3-responsive">
         <div class="tab">
   <button class="tablinks" id="varsayilan" onclick="openCity(event, 'London')">Tüm Deneyler</button>
-  <button class="tablinks" onclick="openCity(event, 'Paris')">Yayınlananlar</button>
-  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Taslaklar</button>
   <button class="tablinks" onclick="openCity(event, 'Gecmis')">Geçmiş Deneyler</button>
 </div>
 
 <div id="London" class="tabcontent">
-      <table class="w3-table w3-bordered w3-border">
-<tbody><tr>
-<th >Deney</th>
-<th >Yer</th>
-<th >Zaman</th>
-</tr><tr><td>Deney Adı 1</td><td>asdasdasasdasdasdasd</td><td>02.05.2023 - 20.00</td><td><a class="w3-btn btnsmall w3-red w3-round-large w3-right" style="margin: 4px;">Sil</a><a class="w3-btn btnsmall w3-red w3-round-large w3-right" style="margin: 4px;">Geri Al</a><a class="w3-btn btnsmall w3-green w3-round-large w3-right" style="margin: 4px;">Düzenle</a></td></tr>
-<tr><td>2 Deney Adı</td><td>asdasasddssdsa</td><td>02.05.2023 - 20.00</td><td><a class="w3-btn btnsmall w3-red w3-round-large w3-right" style="margin: 4px;">Sil</a><a class="w3-btn btnsmall w3-green w3-round-large w3-right" style="margin: 4px;">Yayınla</a><a class="w3-btn btnsmall w3-green w3-round-large w3-right" style="margin: 4px;">Düzenle</a></td></tr>
-<tr><td>Adı Deney 3</td><td>27sdsddssd0</td><td>26.04.2023 - 20.00</td><td><a class="w3-btn btnsmall w3-red w3-round-large w3-right" style="margin: 4px;">Sil</a></td></tr>
-<tr><td>Deney 4 Adı</td><td>sdsdsadasdad</td><td>26.04.2023 - 20.00</td><td><a class="w3-btn btnsmall w3-red w3-round-large w3-right" style="margin: 4px;">Sil</a></td></tr>
-</tbody></table> </div>
-
-<div id="Paris" class="tabcontent">
-      <table class="w3-table w3-bordered w3-border">
-<tbody><tr>
-<th >Deney</th>
-<th >Yer</th>
-<th >Zaman</th>
-</tr><tr><td>Deney Adı 1</td><td>asdasdasasdasdasdasd</td><td>02.05.2023 - 20.00</td><td><a class="w3-btn btnsmall w3-red w3-round-large w3-right" style="margin: 4px;">Sil</a><a class="w3-btn btnsmall w3-red w3-round-large w3-right" style="margin: 4px;">Geri Al</a><a class="w3-btn btnsmall w3-green w3-round-large w3-right" style="margin: 4px;">Düzenle</a></td></tr>
-<tr><td>Deney 4 Adı</td><td>sdsdsadasdad</td><td>26.04.2023 - 20.00</td><td><a class="w3-btn btnsmall w3-red w3-round-large w3-right" style="margin: 4px;">Sil</a></td></tr>
-</tbody></table> 
 </div>
 
-<div id="Tokyo" class="tabcontent">
-      <table class="w3-table w3-bordered w3-border">
-<tbody><tr>
-<th >Deney</th>
-<th >Yer</th>
-<th >Zaman</th>
-</tr><tr><td>2 Deney Adı</td><td>asdasasddssdsa</td><td>02.05.2023 - 20.00</td><td><a class="w3-btn btnsmall w3-red w3-round-large w3-right" style="margin: 4px;">Sil</a><a class="w3-btn btnsmall w3-green w3-round-large w3-right" style="margin: 4px;">Yayınla</a><a class="w3-btn btnsmall w3-green w3-round-large w3-right" style="margin: 4px;">Düzenle</a></td></tr>
-</tbody></table> 
-</div>
         
 <div id="Gecmis" class="tabcontent">
- <table class="w3-table w3-bordered w3-border">
-<tbody><tr>
-<th >Deney</th>
-<th >Yer</th>
-<th >Zaman</th>
-</tr>
-<tr><td>Adı Deney 3</td><td>27sdsddssd0</td><td>26.04.2023 - 20.00</td><td><a class="w3-btn btnsmall w3-red w3-round-large w3-right" style="margin: 4px;">Sil</a></td></tr>
-<tr><td>Deney 4 Adı</td><td>sdsdsadasdad</td><td>26.04.2023 - 20.00</td><td><a class="w3-btn btnsmall w3-red w3-round-large w3-right" style="margin: 4px;">Sil</a></td></tr>
-</tbody></table> 
 </div>
      </div><br>
       <div>
-        <a class="w3-btn btnsmall w3-green w3-round-large w3-right" style="margin-top: -14px; margin-right: 10px">Deney Ekle</a>
+        <a onclick="showDialog()" class="w3-btn btnsmall w3-green w3-round-large w3-right" style="margin-top: -14px; margin-right: 10px">Deney Ekle</a>
       </div>
       
       <br><br><br>
@@ -359,6 +380,13 @@ img {vertical-align: middle;}
       <!-- End page content -->
     
     <script>
+if(localStorage.getItem("girisb").includes("@") || localStorage.getItem("girisb").includes(".")  || !localStorage.getItem("girisb").includes("--sirket--"))
+  {
+    window.location.href = "/sirketgiris"
+  }
+      
+document.getElementById("firmay").innerText = localStorage.getItem("sirketad")
+document.getElementById("epostay").innerText = localStorage.getItem("sirketmail")      
 document.getElementById("varsayilan").click();
 document.getElementById("varsayilann").click();
 
@@ -395,6 +423,9 @@ function openCityy(evt, cityName) {
     localStorage.setItem("girisb", "h")
     window.location.href = "/#"
 }
+      
+  
+  
 </script>
   </body>
 </html>
