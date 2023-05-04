@@ -1,4 +1,6 @@
 const yonetEkran = document.getElementById("asdasd");
+const tumDeneyEkran = document.getElementById("asdasda");
+const tumEtkinlikEkran = document.getElementById("asdasdas");
 const etkinlikEkran = document.getElementById("asdasdasd");
 const mailV = document.getElementById("eposta");
 const baslikV = document.getElementById("konu");
@@ -23,19 +25,24 @@ var deneyb_bvr;
 let jsonVeri;
 
 async function GirisKontrol(){
-await fetch("https://turk-biyologlar-dernegi.glitch.me/kartlar")
+  //"https://turk-biyologlar-dernegi.glitch.me/kartlar"
+await fetch("http://localhost:3000/kartlar")
             .then((response) => response.json())
             .then((json) => jsonVeri = json);
           
           
             let htmlCode =
     `
-     <h3 class="w3-border-bottom w3-border-white pad10 ortaiki cardbaslik" style="margin-top: 50px; max-width: 100%;">
+     <h3 class="etkinlik-header" style="margin-top: 50px; max-width: 100%; color: #7157d3">
           Deneyler
         </h3>
-        <p class="cardbaslik ortaiki ortadort">Deneyleri aşağıda görüntüleyebilirsiniz.</p>
+        <p class="">Deneyleri aşağıda görüntüleyebilirsiniz.</p>
         
-                          <section class="cards ortala">
+        <button class="etkinlik-coll" id="hepsinigor">
+          <a href="/deneyler">Hepsini Gör</a>
+        </button>
+                          <div class="etkinlik-content" style="width: 100%; grid-template-rows: auto auto auto; padding: 0; ">
+                          
             
   `;
           jsonVeri.aciklamalar.forEach(function(singleElephantObjects) {
@@ -43,33 +50,40 @@ await fetch("https://turk-biyologlar-dernegi.glitch.me/kartlar")
     htmlCode =
     htmlCode +
     `   
-<div class="card">
+
+<div class="card etkinlik-card">
           <div class="card__image-container">
-            <img
+            <img  
               src="${jsonVeri.resimler[index]}"
             />
           </div>
           <div class="card__content">
             <p class="card__title text--medium">
-         <b>${jsonVeri.basliklar[index]}</b>
-          </p>
+              <b>${jsonVeri.basliklar[index]}</b>
+            </p>
             <div id="altacik${index}" style="display: none">
-              <b>Açıklama</b><br>
+              <p style="font-size:1.5rem; font-weight:500; margin-bottom:-1rem">Açıklama</p>
+              <br>
               ${jsonVeri.aciklamalar[index]}
               <div class="card__info">
-              <div>
-              <p class="card__altbasliklar"><b>Firma</b></p>
-              <p class= card__altbasliklar" style="margin-top: -15px">${jsonVeri.firmalar[index]}</p>
-              </div><div style="margin-left: auto">
-              <p class="card__altbasliklar"><b>Yer</b></p>
-              <p class="card__altbasliklar" style="margin-top: -15px">${jsonVeri.yerler[index]}</p>
-              </div><div style="margin-left: auto">
-              <p class="card__altbasliklar"><b>Tarih</b></p>
-              <p class="card__altbasliklar" style="margin-top: -15px">${jsonVeri.tarihler[index]}</p>
-              </div><div style="margin-left: auto">
-              <p class="card__altbasliklar"><b>Saat</b></p>
-              <p class="card__altbasliklar" style="margin-top: -15px">${jsonVeri.saatler[index]}</p>
+                <div class="card__sec" style:"background-color: white;">
+                  <p class="card__altbasliklar" style="font-size:1.25rem; font-weight:500"><b>Firma</b></p>
+                  <p class= card__altbasliklar" style="margin-top: -15px">${jsonVeri.firmalar[index]}</p>
+                </div>
+                <div class="card__sec" style="margin-left: auto; white-space: initial;">
+                  <p class="card__altbasliklar" style="font-size:1.25rem; font-weight:500"><b>Yer</b></p>
+                  <p class="card__altbasliklar" style="margin-top: -15px">${jsonVeri.yerler[index]}</p>
+                </div>
               </div>
+              <div class = "card__info">
+                <div class="card__sec">
+                  <p class="card__altbasliklar" style="font-size:1.25rem; font-weight:500"><b>Tarih</b></p>
+                  <p class="card__altbasliklar" style="margin-top: -15px">${jsonVeri.tarihler[index]}</p>
+                </div>
+                <div class="card__sec" style="margin-left: auto; word-wrap: break-word">
+                  <p class="card__altbasliklar" style="font-size:1.25rem; font-weight:500"><b>Saat</b></p>
+                  <p class="card__altbasliklar" style="margin-top: -15px">${jsonVeri.saatler[index]}</p>
+                </div>
               </div>
             </div>
             <div class="card__info">
@@ -86,9 +100,87 @@ await fetch("https://turk-biyologlar-dernegi.glitch.me/kartlar")
 
             
 });
-                     htmlCode = htmlCode + "</section>";
+                    htmlCode = htmlCode + "</div>";
 
-  yonetEkran.innerHTML = htmlCode;
+  if (yonetEkran) {
+    yonetEkran.innerHTML = htmlCode;
+  }
+
+
+
+
+            let htmlCode2 =
+    `
+    <h3 class="" style="margin-top: 50px; max-width: 100%; color: #7157d3">
+          Deneyler
+        </h3>
+        <p class="">Deneyleri aşağıda görüntüleyebilirsiniz.</p>
+        
+                          <div class="etkinlik-content etkinlik-content-sayfa" style="width: 100%; grid-template-rows: auto auto auto; padding: 0; overflow: visible"; max-height: fit-content; background-color: red;>
+                          
+            
+  `;
+          jsonVeri.aciklamalar.forEach(function(singleElephantObjects) {
+            let index = jsonVeri.aciklamalar.indexOf(singleElephantObjects)
+    htmlCode2 =
+    htmlCode2 +
+    `   
+
+<div style="display: inline-flex; flex-direction: column; word-wrap: break-word; background-color: #7157d3; margin-left: 1rem; margin-right: 1rem; max-height: 25rem; height:fit-content; margin-top:1rem; " class="card etkinlik-card etkinlik-card-sayfa etkinlik-card-sayfa">
+          <div class="card__image-container">
+            <img  
+              src="${jsonVeri.resimler[index]}"
+            />
+          </div>
+          <div class="card__content">
+            <p class="card__title text--medium">
+              <b>${jsonVeri.basliklar[index]}</b>
+            </p>
+            <div id="altacik${index}" style="display: none">
+              <p style="font-size:1.5rem; font-weight:500; margin-bottom:-1rem">Açıklama</p>
+              <br>
+              ${jsonVeri.aciklamalar[index]}
+              <div class="card__info">
+                <div class="card__sec" style:"background-color: white;">
+                  <p class="card__altbasliklar" style="font-size:1.25rem; font-weight:500"><b>Firma</b></p>
+                  <p class= card__altbasliklar" style="margin-top: -15px">${jsonVeri.firmalar[index]}</p>
+                </div>
+                <div class="card__sec" style="margin-left: auto; white-space: initial;">
+                  <p class="card__altbasliklar" style="font-size:1.25rem; font-weight:500"><b>Yer</b></p>
+                  <p class="card__altbasliklar" style="margin-top: -15px">${jsonVeri.yerler[index]}</p>
+                </div>
+              </div>
+              <div class = "card__info">
+                <div class="card__sec">
+                  <p class="card__altbasliklar" style="font-size:1.25rem; font-weight:500"><b>Tarih</b></p>
+                  <p class="card__altbasliklar" style="margin-top: -15px">${jsonVeri.tarihler[index]}</p>
+                </div>
+                <div class="card__sec" style="margin-left: auto; word-wrap: break-word">
+                  <p class="card__altbasliklar" style="font-size:1.25rem; font-weight:500"><b>Saat</b></p>
+                  <p class="card__altbasliklar" style="margin-top: -15px">${jsonVeri.saatler[index]}</p>
+                </div>
+              </div>
+            </div>
+            <div class="card__info">
+              <p class="text--medium" style="margin-left: auto"></p>
+              <div id="${jsonVeri.iletisimler[index]}"> </div>
+              <p class="card__iletisim text--medium iletisimm" id="iletisim${index}">İletişim</p>
+              <div id="${jsonVeri.iletisimler[index]}"> </div>
+              <p class="card__iletisim text--medium basvurr" id="iletisim${index}">Başvur</p>
+              <p class="card__price text--medium detayyy" id="detay${index}">Detaylar</p>
+            </div>
+          </div>
+        </div>
+  `;
+
+            
+});
+
+                    htmlCode2 = htmlCode2 + "</div>";
+
+  if (tumDeneyEkran){
+    tumDeneyEkran.innerHTML = htmlCode2;
+  }
   
 var coll = document.getElementsByClassName("detayy");
 var i;
@@ -96,35 +188,95 @@ var content;
 var concard;
 var iletisim;
 var basvur;
+var etkinlikCard;
+var etkinlikColl = document.getElementById("hepsinigor");
+var etkinlikContent = etkinlikColl?.nextElementSibling;
+var count = 0;
+
+function sizeFunc(){
+        if (window.matchMedia("(max-width: 1300px)").matches && !window.matchMedia("(max-width: 600px)").matches){
+          etkinlikContent.style.maxHeight = "340px";
+        }
+        else if (window.matchMedia("(max-width: 600px)").matches){  
+          etkinlikContent.style.maxHeight = "375px";
+        }
+        else{
+          etkinlikContent.style.maxHeight = "400px"
+        }
+}
 
 for (i = 0; i < coll.length; i++) {
   coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
     content = this.parentElement.previousElementSibling;
     basvur = this.previousElementSibling;
     iletisim = basvur.previousElementSibling.previousElementSibling;
+    etkinlikCard = content.parentElement.parentElement;
 
 
     if (content.style.display === "block") {
       content.style.display = "none";
       iletisim.style.display = "none";
       basvur.style.display = "none";
-      concard = this.parentElement.previousElementSibling.parentElement.parentElement;
-      concard.style.maxHeight = "370px";
-      concard.style.transition = "all 0.3s ease 0s;";
+      etkinlikContent.style.transition = "0s";
+        count--
+      if(etkinlikContent.style.maxHeight !== "fit-content" && count == 0) {
+        sizeFunc()
+        etkinlikCard.style.maxHeight = "25rem"
+      }
     } else {
       content.style.display = "block";
       iletisim.style.display = "block";
       basvur.style.display = "block";
-      concard = this.parentElement.previousElementSibling.parentElement.parentElement;
-      concard.style.maxHeight = "1500px";
+      concard = this.parentElement.previousElementSibling.parentElement;
       concard.style.transition = "all 0.9s ease 0s;";
-    }
+      etkinlikContent.style.transition = "0.2s";
+      count++
+      etkinlikCard.style.maxHeight = "50rem"
+      if(etkinlikContent.style.maxHeight !== "fit-content") {
+        etkinlikContent.style.maxHeight = etkinlikCard.scrollHeight + "px"
+      }
+    }    
   });
 }
 
+var coll2 = document.getElementsByClassName("detayyy");
+var i;
+var content;
+var concard;
+var iletisim;
+var basvur;
+var etkinlikCard;
+var count = 0;
+
+for (i = 0; i < coll2.length; i++) {
+  coll2[i].addEventListener("click", function() {
+    content = this.parentElement.previousElementSibling;
+    basvur = this.previousElementSibling;
+    iletisim = basvur.previousElementSibling.previousElementSibling;
+    etkinlikCard = content.parentElement.parentElement;
+    var etkinlikContent = etkinlikCard.parentElement;
+
+
+    if (content.style.display === "block") {
+      content.style.display = "none";
+      iletisim.style.display = "none";
+      basvur.style.display = "none";
+      etkinlikContent.style.transition = "0s";
+        count--
+    } else {
+      content.style.display = "block";
+      iletisim.style.display = "block";
+      basvur.style.display = "block";
+      concard = this.parentElement.previousElementSibling.parentElement;
+      concard.style.transition = "all 0.9s ease 0s;";
+      etkinlikContent.style.transition = "0.2s";
+      count++
+      etkinlikCard.style.maxHeight = "50rem"
+    }    
+  });
+}
 var colll = document.getElementsByClassName("iletisimm");
-var ii;
+var ii; 
 
 for (ii = 0; ii < coll.length; ii++) {
   colll[ii].addEventListener("click", function() {
@@ -154,19 +306,24 @@ GirisKontrol();
 EtkinlikKontrol()
 
 async function EtkinlikKontrol(){
-await fetch("https://turk-biyologlar-dernegi.glitch.me/etkinlikkartlari")
+  //https://turk-biyologlar-dernegi.glitch.me/etkinlikkartlari
+await fetch("http://localhost:3000/etkinlikkartlari")
             .then((response) => response.json())
             .then((json) => jsonVeri = json);
           
           
             let htmlCode =
     `
-     <h3 class="w3-border-bottom w3-border-white pad10 ortaiki cardbaslik" style="margin-top: 50px; max-width: 100%;">
-          Online Etkinlikler
-        </h3>
-        <p class="cardbaslik ortaiki ortadort">Online etkinlikleri aşağıda görüntüleyebilirsiniz.</p>
+     <h3 class="w3-border-black etkinlik-header" style="margin-top: 50px; max-width: 100%; color: #7157d3;">
+              Online Etkinlikler
+            </h3>
+            <p class=" ">Online etkinlikleri aşağıda görüntüleyebilirsiniz.</p>
+
         
-                          <section class="cards ortala">
+                          <button class="etkinlik-coll" id="hepsinigor2">
+                            <a href="/etkinlikler">Hepsini Gör</a>
+                          </button>
+                          <div class="etkinlik-content">
             
   `;
           jsonVeri.aciklamalar.forEach(function(singleElephantObjects) {
@@ -174,7 +331,8 @@ await fetch("https://turk-biyologlar-dernegi.glitch.me/etkinlikkartlari")
     htmlCode =
     htmlCode +
     `   
-<div class="card">
+    
+<div  class="card etkinlik-card">
           <div class="card__image-container">
             <img
               src="${jsonVeri.resimler[index]}"
@@ -182,25 +340,100 @@ await fetch("https://turk-biyologlar-dernegi.glitch.me/etkinlikkartlari")
           </div>
           <div class="card__content">
             <p class="card__title text--medium">
-         <b>${jsonVeri.basliklar[index]}</b>
-          </p>
+            <b>${jsonVeri.basliklar[index]}</b>
+            </p>
             <div id="altacik${index}" style="display: none">
-              <b>Açıklama</b><br>
+              <p style="font-size:1.5rem; font-weight:500;">Açıklama</p>
               ${jsonVeri.aciklamalar[index]}
               <div class="card__info">
-              <div>
-              <p class="card__altbasliklar"><b>Firma</b></p>
-              <p class= card__altbasliklar" style="margin-top: -15px">${jsonVeri.firmalar[index]}</p>
-              </div><div style="margin-left: auto">
-              <p class="card__altbasliklar"><b>Tarih</b></p>
-              <p class="card__altbasliklar" style="margin-top: -15px">${jsonVeri.tarihler[index]}</p>
-              </div><div style="margin-left: auto">
-              <p class="card__altbasliklar"><b>Saat</b></p>
-              <p class="card__altbasliklar" style="margin-top: -15px">${jsonVeri.saatler[index]}</p>
+                <div class="card__sec" style:"background-color: white;white-space: initial;">
+                  <p class="card__altbasliklar" style="font-size:1.25rem; font-weight:500"><b>Firma</b></p>
+                  <p class= card__altbasliklar" style="margin-top: -15px">${jsonVeri.firmalar[index]}</p>
+                </div>
+                <div class="card__sec" style="" >
+                  <p class="card__altbasliklar" style="font-size:1.25rem; font-weight:500"><b>Tarih</b></p>
+                  <p class="card__altbasliklar" style="margin-top: -15px">${jsonVeri.tarihler[index]}</p>
+                </div>
               </div>
-              </div><div style="margin-left: auto">
-              <p class="card__altbasliklar"><b>Zoom Linki</b></p>
-              <p class="card__altbasliklar" style="margin-top: -15px"><a href="${jsonVeri.linkler[index]}">Toplantıya Katıl</a></p>
+              <div class="card__info">
+                <div class="card__sec" style="">
+                  <p class="card__altbasliklar" style="font-size:1.25rem; font-weight:500"><b>Saat</b></p>
+                  <p class="card__altbasliklar" style="margin-top: -15px">${jsonVeri.saatler[index]}</p>
+                </div>
+                <div class="card__sec" style=" word-wrap: break-word">
+                  <p class="card__altbasliklar" style="font-size:1.25rem; font-weight:500"><b>Zoom Linki</b></p>
+                  <p class="card__altbasliklar" style="margin-top: -15px"><a href="${jsonVeri.linkler[index]}">Toplantıya Katıl</a></p>
+                </div>
+              </div>
+            </div>
+            <div class="card__info">
+              <p class="text--medium" style="margin-left: auto"></p>
+              <div id="${jsonVeri.iletisimler[index]}"> </div>
+              <p class="card__iletisim text--medium eiletisimm" id="iletisim${index}">İletişim</p>
+              <p class="card__price text--medium edetayyyy" id="detay${index}">Detaylar</p>
+            </div>
+          </div>
+        </div>
+  `;
+
+            
+});
+                    htmlCode = htmlCode + "</div>";
+
+  if(etkinlikEkran){
+    etkinlikEkran.innerHTML = htmlCode;
+  }
+
+
+              let htmlCode3 =
+    `
+     <h3 class=" w3-border-black " style="margin-top: 50px; max-width: 100%; color: #7157d3;">
+              Online Etkinlikler
+            </h3>
+            <p class=" ">Online etkinlikleri aşağıda görüntüleyebilirsiniz.</p>
+
+        
+                          <div class="etkinlik-content etkinlik-card-sayfa" style="width: 100%; grid-template-rows: auto auto auto; padding: 0;">
+            
+  `;
+          jsonVeri.aciklamalar.forEach(function(singleElephantObjects) {
+            let index = jsonVeri.aciklamalar.indexOf(singleElephantObjects)
+    htmlCode3 =
+    htmlCode3 +
+    `   
+    
+<div style="display: inline-flex; flex-direction: column; word-wrap: break-word; background-color: #7157d3; margin-left: 1rem; margin-right: 1rem; max-height: 25rem; height:fit-content; margin-top:1rem; " class="card etkinlik-card etkinlik-card-sayfa">
+          <div class="card__image-container">
+            <img
+              src="${jsonVeri.resimler[index]}"
+            />
+          </div>
+          <div class="card__content">
+            <p class="card__title text--medium">
+            <b>${jsonVeri.basliklar[index]}</b>
+            </p>
+            <div id="altacik${index}" style="display: none">
+              <p style="font-size:1.5rem; font-weight:500;">Açıklama</p>
+              ${jsonVeri.aciklamalar[index]}
+              <div class="card__info">
+                <div class="card__sec" style:"background-color: white;white-space: initial;">
+                  <p class="card__altbasliklar" style="font-size:1.25rem; font-weight:500"><b>Firma</b></p>
+                  <p class= card__altbasliklar" style="margin-top: -15px">${jsonVeri.firmalar[index]}</p>
+                </div>
+                <div class="card__sec" style="" >
+                  <p class="card__altbasliklar" style="font-size:1.25rem; font-weight:500"><b>Tarih</b></p>
+                  <p class="card__altbasliklar" style="margin-top: -15px">${jsonVeri.tarihler[index]}</p>
+                </div>
+              </div>
+              <div class="card__info">
+                <div class="card__sec" style="">
+                  <p class="card__altbasliklar" style="font-size:1.25rem; font-weight:500"><b>Saat</b></p>
+                  <p class="card__altbasliklar" style="margin-top: -15px">${jsonVeri.saatler[index]}</p>
+                </div>
+                <div class="card__sec" style=" word-wrap: break-word">
+                  <p class="card__altbasliklar" style="font-size:1.25rem; font-weight:500"><b>Zoom Linki</b></p>
+                  <p class="card__altbasliklar" style="margin-top: -15px"><a href="${jsonVeri.linkler[index]}">Toplantıya Katıl</a></p>
+                </div>
               </div>
             </div>
             <div class="card__info">
@@ -215,9 +448,57 @@ await fetch("https://turk-biyologlar-dernegi.glitch.me/etkinlikkartlari")
 
             
 });
-                     htmlCode = htmlCode + "</section>";
+                    htmlCode3 = htmlCode3 + "</div>";
 
-  etkinlikEkran.innerHTML = htmlCode;
+    if(tumEtkinlikEkran){
+        tumEtkinlikEkran.innerHTML = htmlCode3;
+    }
+
+var coll3 = document.getElementsByClassName("edetayyyy");
+var i;
+var content;
+var concard;
+var iletisim;
+var basvur;
+var etkinlikCard;
+var etkinlikColl = document.getElementById("hepsinigor2");
+var etkinlikContent = etkinlikColl?.nextElementSibling;
+var count = 0;
+
+for (i = 0; i < coll3.length; i++) {
+  coll3[i].addEventListener("click", function() {
+    content = this.parentElement.previousElementSibling;
+    basvur = this.previousElementSibling;
+    iletisim = basvur.previousElementSibling.previousElementSibling;
+    etkinlikCard = content.parentElement.parentElement;
+
+
+    if (content.style.display === "block") {
+      content.style.display = "none";
+      iletisim.style.display = "none";
+      basvur.style.display = "none";
+      etkinlikContent.style.transition = "0s";
+        count--
+      if(etkinlikContent.style.maxHeight !== "fit-content" && count == 0) {
+        etkinlikContent.style.maxHeight = "400px"
+        etkinlikCard.style.maxHeight = "25rem"
+      }
+    } else {
+      content.style.display = "block";
+      iletisim.style.display = "block";
+      basvur.style.display = "block";
+      concard = this.parentElement.previousElementSibling.parentElement;
+      concard.style.transition = "all 0.9s ease 0s;";
+      etkinlikContent.style.transition = "0.2s";
+      count++
+      etkinlikCard.style.maxHeight = "50rem"
+      if(etkinlikContent.style.maxHeight !== "fit-content") {
+        etkinlikContent.style.maxHeight = etkinlikCard.scrollHeight + "px"
+      }
+    }    
+  });
+}
+
   
 var coll = document.getElementsByClassName("edetayy");
 var i;
@@ -225,32 +506,40 @@ var content;
 var concard;
 var iletisim;
 var basvur;
+var etkinlikCard;
+var count = 0;
 
 for (i = 0; i < coll.length; i++) {
   coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
     content = this.parentElement.previousElementSibling;
     basvur = this.previousElementSibling;
     iletisim = basvur.previousElementSibling.previousElementSibling;
+    etkinlikCard = content.parentElement.parentElement;
+    var etkinlikContent = etkinlikCard.parentElement;
 
 
     if (content.style.display === "block") {
       content.style.display = "none";
       iletisim.style.display = "none";
       basvur.style.display = "none";
-      concard = this.parentElement.previousElementSibling.parentElement.parentElement;
-      concard.style.maxHeight = "370px";
-      concard.style.transition = "all 0.3s ease 0s;";
+      etkinlikContent.style.transition = "0s";
+        count--
+      if(etkinlikContent.style.maxHeight !== "fit-content" && count == 0) {
+        etkinlikCard.style.maxHeight = "fit-content"
+      }
     } else {
       content.style.display = "block";
       iletisim.style.display = "block";
       basvur.style.display = "block";
-      concard = this.parentElement.previousElementSibling.parentElement.parentElement;
-      concard.style.maxHeight = "1500px";
+      concard = this.parentElement.previousElementSibling.parentElement;
       concard.style.transition = "all 0.9s ease 0s;";
-    }
+      etkinlikContent.style.transition = "0.2s";
+      count++
+      etkinlikCard.style.maxHeight = "fit-content"
+    }    
   });
 }
+
 
 var colll = document.getElementsByClassName("eiletisimm");
 var ii;
@@ -302,8 +591,15 @@ function showBasvur(){
 
     var winWidth = window.innerWidth;
 
-    dlg.style.left = (winWidth/2) - 480/2 + "px";
-    dlg.style.top = "150px";
+    
+    if (window.matchMedia("(max-width: 600px)").matches){
+      dlg.style.left = "10%";
+    }
+    else{
+      dlg.style.left = (winWidth/2) - 480/2 + "px";
+    }
+    dlg.style.top = "50%";
+    dlg.style.transform = "translateY(-50%)"
   
     if (typeof(Storage) !== "undefined") {
   		bvrIsim.value = localStorage.getItem("isim");
@@ -323,7 +619,8 @@ async function dlgOK(){
   dlgHide();
   let date = new Date();
   let icicerik = icerikV.value.replace(/(?:\r\n|\r|\n)/g, '<br />');
-  let res = await fetch("https://turk-biyologlar-dernegi.glitch.me/mailat", {
+  //https://turk-biyologlar-dernegi.glitch.me/mailat
+  let res = await fetch("http://localhost:54370/mailat", {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
@@ -353,7 +650,8 @@ async function bvrOK(){
   bvrHide();
   let date = new Date();
   let icicerik = icerikV.value.replace(/(?:\r\n|\r|\n)/g, '<br />');
-  let res = await fetch("https://turk-biyologlar-dernegi.glitch.me/basvuruat", {
+  //https://turk-biyologlar-dernegi.glitch.me/basvuruat
+  let res = await fetch("http://localhost:54370/basvuruat", {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',

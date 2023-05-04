@@ -30,8 +30,9 @@ async function GirisKontrol(){
           giris = true;
           girisEkran.style.display = "none";
           
-         await fetch("https://turk-biyologlar-dernegi.glitch.me/kartlar")
-            .then((response) => response.json())
+          //https://turk-biyologlar-dernegi.glitch.me/kartlar
+          await fetch("http://localhost:3000/kartlar")
+            .then((response) => response.json())  
             .then((json) => jsonVeri = json);
           
           
@@ -144,7 +145,8 @@ EtkinlikKontrol()
 
 
 async function EtkinlikKontrol(){   
-         await fetch("https://turk-biyologlar-dernegi.glitch.me/etkinlikkartlari")
+  //https://turk-biyologlar-dernegi.glitch.me/etkinlikkartlari
+         await fetch("http://localhost:3000/etkinlikkartlari")
             .then((response) => response.json())
             .then((json) => jsonVeri = json);
           
@@ -250,7 +252,8 @@ for (ii = 0; ii < coll.length; ii++) {
 
 
 async function silsil(ind){
-    let res = await fetch("https://turk-biyologlar-dernegi.glitch.me/silsilsil", {
+  //https://turk-biyologlar-dernegi.glitch.me/silsilsil
+    let res = await fetch("http://localhost:3000/silsilsil", {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
@@ -261,7 +264,8 @@ async function silsil(ind){
 }
 
 async function onsilsil(ind){
-    let res = await fetch("https://turk-biyologlar-dernegi.glitch.me/onsilsilsil", {
+  //https://turk-biyologlar-dernegi.glitch.me/onsilsilsil
+    let res = await fetch("http://localhost:3000/onsilsilsil", {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
@@ -343,7 +347,8 @@ async function dlgOK(){
   dlgHide();
   if(giris){
   let date = new Date(tarihB.value);
-  let res = await fetch("https://turk-biyologlar-dernegi.glitch.me/veritabani", {
+  //https://turk-biyologlar-dernegi.glitch.me/veritabani
+  let res = await fetch("http://localhost:3000/veritabani", {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
@@ -355,7 +360,7 @@ async function dlgOK(){
       var link = prompt("Yüklediğiniz resim ile ilgili bir hata oluştu. Resim çok büyük. İsterseniz resmi url olarak yazabilirsiniz.");
       if(link.length > 1)
         {
-      let res = await fetch("https://turk-biyologlar-dernegi.glitch.me/veritabani", {
+      let res = await fetch("http://localhost:3000/veritabani", {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
@@ -372,7 +377,8 @@ async function edlgOK(){
   edlgHide();
   if(giris){
   let date = new Date(etarihB.value);
-  let res = await fetch("https://turk-biyologlar-dernegi.glitch.me/onetkinlikekle", {
+  //https://turk-biyologlar-dernegi.glitch.me/onetkinlikekle
+  let res = await fetch("http://localhost:3000/onetkinlikekle", {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
@@ -384,7 +390,7 @@ async function edlgOK(){
       var link = prompt("Yüklediğiniz resim ile ilgili bir hata oluştu. Resim çok büyük. İsterseniz resmi url olarak yazabilirsiniz.");
       if(link.length > 1)
         {
-      let res = await fetch("https://turk-biyologlar-dernegi.glitch.me/onetkinlikekle", {
+      let res = await fetch("http://localhost:3000/onetkinlikekle", {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
