@@ -4,7 +4,7 @@
     <title>Türk Biyologlar Derneği</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <link rel="stylesheet" href="/panel.css" />
+    <link rel="stylesheet" href="/panel.css" />
 
     <link rel="stylesheet" href="/style.css" />
 
@@ -22,7 +22,7 @@
       }
       body {
         font-family: "Çok iyi font";
-        background-color: #03a3bc;
+        background-color: #7157d3;
         -webkit-font-smoothing: antialiased;
         color: white;
         max-width: 100%
@@ -217,16 +217,33 @@ img {vertical-align: middle;}
 </div>
     
     <!-- Navbar (sit on top) -->
-    <div class="w3-top">
-      <div class="w3-white w3-wide w3-padding w3-card siteheader header">
-        <a href="#deneyler" class="w3-bar-item w3-button"
-           ><b style="margin-right: 6px">BBF</b><small>BiBioForm</small></a>
-        <!-- Float links to the right. Hide them on small screens -->
-        <div class="w3-right header-right">
-          <a href="/" class="w3-bar-item w3-button navbaritem">Ana Sayfa</a>
+    <nav class="navbar">
+      <!-- LOGO -->
+      <a href="/" class="w3-bar-item logo-hover"><b style="margin-right: 6px; font-size: xx-large;">BBF</b><small
+          style="font-size: x-large;">BioBiForm</small></a>
+    
+      <!-- NAVIGATION MENU -->
+      <ul class="nav-links">
+    
+        <!-- USING CHECKBOX HACK -->
+        <input type="checkbox" id="checkbox_toggle" />
+        <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+    
+        <!-- NAVIGATION MENUS -->
+        <div class="menu">
+    
+          <li><a href="/#hakkimizda">Hakkımızda</a></li>
+          <li><a href="/#etkinlikler">Etkinlikler</a></li>
+          <li><a href="/#partnerler">Partnerlerimiz</a></li>
+          <li><a href="/#iletisim">İletişim</a></li>
+          <button class="kulikobtn" onclick="BasvuruBilgisi()">
+            <img
+              src="https://cdn.glitch.global/d715ea4b-6135-49e7-b49d-85a3298eb352/profile-circle-svgrepo-com(1).svg?v=1683121080092"
+              class="kullaniciikon">
+          </button>
         </div>
-      </div>
-    </div>
+      </ul>
+    </nav>
 
     <!-- Header -->
      <!-- <img

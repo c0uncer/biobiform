@@ -49,6 +49,15 @@ app.get("/profil", (request, response) => {
 app.get("/sirketler/sirket/panel", (request, response) => {
   response.sendFile(__dirname + "/views/diagnotech.html");
 });
+app.get("/sirketler/diagnotech/detaylar", (request, response) => {
+  response.sendFile(__dirname + "/views/sirketDetails.html");
+});
+app.get("/deneyler", (request, response) => {
+  response.sendFile(__dirname + "/views/tümDeneyler.html");
+});
+app.get("/etkinlikler", (request, response) => {
+  response.sendFile(__dirname + "/views/tümEtkinlikler.html");
+});
 
 app.get("/aaa", (request, response) => {
   response.send(db.get("df")[0]);
@@ -950,7 +959,7 @@ if (indexx > -1) { // only splice array when item is found
 });
 
 // listen for requests :)
-const listener = app.listen(process.env.PORT, () => {
+const listener = app.listen(3000, () => {
   console.log("Your app is listening on port " + listener.address().port);
 });
 

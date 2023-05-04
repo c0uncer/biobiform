@@ -1,5 +1,9 @@
 /* this file is loaded by index.html and styles the page */
 
+body{
+  background: white
+}
+
 * {
   box-sizing: border-box;
 }
@@ -39,6 +43,40 @@ footer {
   border-top: 1px solid lightgrey;
 }
 
+.footer{
+  margin-top: 2rem;
+  background-color: white;
+  height: fit-content;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-info{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-info h1{
+  font-style: normal;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  color: black;
+  font-size: xx-large;
+  text-align: center;
+  width: fit-content;
+}
+.footer-info h2{
+  font-size: large;
+  text-align: center;
+  color: black;
+  width: 100%;
+}
+
 h5
 {
   margin:0px;
@@ -61,9 +99,9 @@ p
 }
 
 .kullaniciikon {
-  max-width: 25px;
-  max-height: 25px;
-  margin-top: 6px;
+  max-width: 30px;
+  max-height: 30px;
+  cursor: pointer;
 }
 
 .kulikobtn{
@@ -107,7 +145,7 @@ a.navbaritem:hover{
 }
 
 .collapsible {
-  background-color: white;
+  background-color: #7157d3;
   color: white;
   cursor: pointer;
   padding: 18px;
@@ -120,11 +158,47 @@ a.navbaritem:hover{
   border-top-left-radius: 8px;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
-  color: #03a3bc;
+  color: white;
+  margin-top: 0.5rem;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid white;
+}
+
+.etkinlik-coll {
+    background-color: #7157d3;
+      color: white;
+      cursor: pointer;
+      padding: 18px;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 15px;
+      overflow: hidden;
+      border-top-right-radius: 8px;
+      border-top-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+      border-bottom-left-radius: 8px;
+      color: white;
+      margin-top: 0.5rem;
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+      border: 1px solid white;
+      background-color: transparent;
+        color: #7157d3;
+        width: fit-content;
+        width: fit-content;
+        position: absolute;
+        top: 3.25rem;
+        right: 2rem;
+        padding: 0
 }
 
 .active, .collapsible:hover {
-  background-color: #cccccc !important;
+  background-color: white !important;
+  color: #7157d3;
 }
 
 .active{
@@ -141,12 +215,216 @@ a.navbaritem:hover{
   margin-bottom: 7px;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
-  max-width: 1160px;
-  color: #03a3bc;
+  width: 80%;
+  color: #7157d3;
+  font-weight: 200;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.etkinlik-content{
+    height: fit-content;
+    overflow: hidden;
+    transition: 0.2s ease-out;
+    background-color: white;
+    margin-bottom: 7px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    width: 100%;
+    color: #7157d3;
+    font-weight: 200;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: auto;
+    margin-right: auto;
+    max-height: 400px;
+}
+.etkinlik-content-sayfa{
+  margin-left: -1rem;
+}
+.etkinlik-card{
+  display: inline-flex;
+    flex-direction: column;
+    width: 25rem;
+    word-wrap: break-word;
+    background-color: #7157d3;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    max-height: 25rem;
+    height: fit-content;
+    margin-top: 1rem;
+    padding: 0;
+}
+
+.ball-img{
+  position: absolute;
+    bottom: 0;
+    right: 0;
+    pointer-events: none;
+  width: 90%;
+}
+
+.purple-banner{
+  background-color: #7157d3;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  margin-left: 10rem;
+  width: 35%
+}
+
+
+.partners{
+  background-color: white;
+    margin-top: 3.4rem;
+    height: 15rem;
+    margin-bottom: 5rem;
+    display: flex;
+    align-items: start;
+}
+
+.slideshow-container {
+  max-width: 1000px;
+    position: relative;
+    margin: auto;
+}
+.mySlides {
+  height: 100%;
+  width: 100%;
+}
+
+.mySlides img {
+  height: 100%;
+  width: 100%;
+  max-width: 100rem;
+  max-height: 45rem;
+  min-height: 200px;
+}
+
+.logo-bio{
+  font-style: normal;
+    color: #fff2e6;
+    font-size: 6rem;
+    text-align: center;
+    height: fit-content;
+    margin-bottom: 2rem;
+}
+
+.banner-text h1 {
+  font-style: normal;
+  color: #fff2e6;
+  width: fit-content;
+  font-size: 5rem;
+  margin-top: -0.75rem;
+}
+.etkinlik-card-sayfa{
+  width: 22rem;
+}
+
+@media screen and (max-width: 1300px) {
+  .ball-img {
+      width: 75%;
+  }
+  .slideshow-container {
+    width: 80%;
+  }
+  .banner.bio{
+    font-size: small;
+  }
+  .etkinlik-card{
+    width: 20rem;
+  }
+    .etkinlik-card-sayfa {
+      width: 22rem;
+    }
+  .card__info{
+    width: 100%;
+      margin-left: -0.25rem;
+  }
+  .card__price{
+    font-size: x-small;
+  }
+  .card__iletisim{
+      font-size: x-small;
+  }
+  .etkinlik-content{
+    max-height: 340px
+  }
+  .etkinlik-coll{
+    right: -1rem;
+  }
+  .etkinlik-header{
+    font-size: 1.125rem;
+  }
+  .card__image-container img {
+    width: 8rem;
+
+  }
+  .card__price{
+    display: block;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .ball-img {
+      display: none;
+  }
+  .purple-banner{
+    width: 100%;
+    margin-left: 0;
+  }
+  .card__image-container img{
+    width: 8rem;
+
+  }
+}
+@media screen and (max-width: 600px) {
+    .logo-bio {
+        font-size: 3rem;
+    }
+    .banner-text h1{
+        font-size: 2.5rem;
+    }
+    .etkinlik-card {
+      width: 21rem;
+      margin-top: 2rem;
+      }
+      .etkinlik-card-sayfa {
+        width: 100%;
+        max-width: 30rem;
+      }
+    .etkinlik-content {
+      max-height: 375px;
+    }
+    .card__info{
+      width: 100%;
+      margin-left: -1rem;
+      margin-bottom: 1rem;
+    }
+            .card__price {
+              font-size: normal;
+            }
+
+            .card__iletisim {
+              font-size: normal;
+            }
+    .card__image-container img {
+      width: 8rem;
+      margin-top: 0rem;
+    }
 }
 
 .pribtn {
   background-color: #03a3bc;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
 }
 
 html, body {
@@ -161,6 +439,14 @@ html, body {
   flex-direction: column;
 }
 
+.logo-hover{
+  transition: 0.25s;
+}
+
+.logo-hover:hover{
+  color: #7257d38e;
+}
+
 .wrapper {
   display: flex;
   align-items: center;
@@ -169,7 +455,7 @@ html, body {
 }
 
 .slider {
-  width: 1160px;
+  width: 100vw;
   height: 100px;
   position: relative;
   background: transparent;
@@ -204,7 +490,7 @@ html, body {
   width: 200px;
   position: absolute;
   content: "";
-  background: linear-gradient(to right, #03a3bc 0%, rgba(255,255,255,0) 10%);
+  /* background: linear-gradient(to right, linear-gradient(to bottom, #9a88e0, #9682de) 0%, rgba(255,255,255,0) 10%); */
   z-index: 2;
 }
 
@@ -321,3 +607,117 @@ html, body {
   transform: scale(0.9);
 }
   
+
+/* NAVBAR STYLING STARTS */
+.navbar {
+  width: 100%;
+  height: 5rem;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: white ;
+  color: #7157d3;
+  z-index: 10;
+}
+
+.nav-links a {
+  color: #7157d3;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+/* LOGO */
+.logo {
+  font-size: 32px;
+}
+
+/* NAVBAR MENU */
+.menu {
+  display: flex;
+  gap: 1em;
+  font-size: 18px;
+}
+
+@media screen and (max-width: 500px) {
+}
+
+.menu li:hover {
+  background-color: #7157d3;
+  color: white;
+  border-radius: 5px;
+  transition: 0.3s ease;
+}
+.menu li:hover a{
+  color: white;
+}
+
+.menu li {
+  padding: 5px 14px;
+}
+
+/* DROPDOWN MENU */
+.services {
+  position: relative;
+}
+
+.services:hover .dropdown {
+  display: block;
+}
+
+/* RESPONSIVE NAVBAR MENU STARTS */
+
+/* CHECKBOX HACK */
+
+input[type=checkbox] {
+  display: none;
+}
+
+/* HAMBURGER MENU */
+.hamburger {
+  display: none;
+  font-size: 24px;
+  user-select: none;
+}
+
+/* APPLYING MEDIA QUERIES */
+@media (max-width: 768px) {
+  .menu {
+    display: none;
+    position: absolute;
+    background-color: white;
+    right: 0;
+    left: 0;
+    text-align: center;
+    padding: 16px 0;
+  }
+
+  .menu li:hover {
+    display: inline-block;
+    background-color: #7157d3;
+    transition: 0.3s ease;
+  }
+
+  .menu li+li {
+    margin-top: 12px;
+  }
+
+  input[type=checkbox]:checked~.menu {
+    display: block;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .dropdown {
+    left: 50%;
+    top: 30px;
+    transform: translateX(35%);
+  }
+
+  .dropdown li:hover {
+    background-color: #4c9e9e;
+  }
+}
