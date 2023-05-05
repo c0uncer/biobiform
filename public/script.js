@@ -32,12 +32,16 @@ await fetch("https://turk-biyologlar-dernegi.glitch.me/kartlar")
           
             let htmlCode =
     `
-     <h3 class="w3-border-bottom w3-border-white pad10 ortaiki cardbaslik" style="margin-top: 50px; max-width: 100%;">
+     <h3 class="etkinlik-header" style="margin-top: 50px; max-width: 100%; color: #7157d3">
           Deneyler
         </h3>
-        <p class="cardbaslik ortaiki ortadort">Deneyleri aşağıda görüntüleyebilirsiniz.</p>
+        <p class="">Deneyleri aşağıda görüntüleyebilirsiniz.</p>
         
-                          <section class="cards ortala">
+        <button class="etkinlik-coll" id="hepsinigor">
+          <a href="/deneyler">Hepsini Gör</a>
+        </button>
+                          <div class="etkinlik-content" style="width: 100%; grid-template-rows: auto auto auto; padding: 0; ">
+                          
             
   `;
           jsonVeri.aciklamalar.forEach(function(singleElephantObjects) {
@@ -168,7 +172,7 @@ await fetch("https://turk-biyologlar-dernegi.glitch.me/kartlar")
         </div>
   `;
 
-
+            
 });
 
                     htmlCode2 = htmlCode2 + "</div>";
@@ -192,7 +196,7 @@ function sizeFunc(){
         if (window.matchMedia("(max-width: 1300px)").matches && !window.matchMedia("(max-width: 600px)").matches){
           etkinlikContent.style.maxHeight = "340px";
         }
-        else if (window.matchMedia("(max-width: 600px)").matches){
+        else if (window.matchMedia("(max-width: 600px)").matches){  
           etkinlikContent.style.maxHeight = "375px";
         }
         else{
@@ -230,7 +234,7 @@ for (i = 0; i < coll.length; i++) {
       if(etkinlikContent.style.maxHeight !== "fit-content") {
         etkinlikContent.style.maxHeight = etkinlikCard.scrollHeight + "px"
       }
-    }
+    }    
   });
 }
 
@@ -267,7 +271,7 @@ for (i = 0; i < coll2.length; i++) {
       etkinlikContent.style.transition = "0.2s";
       count++
       etkinlikCard.style.maxHeight = "50rem"
-    }
+    }    
   });
 }
 var colll = document.getElementsByClassName("iletisimm");
@@ -371,7 +375,7 @@ await fetch("http://localhost:3000/etkinlikkartlari")
         </div>
   `;
 
-
+            
 });
                     htmlCode = htmlCode + "</div>";
 
@@ -490,7 +494,7 @@ for (i = 0; i < coll3.length; i++) {
       if(etkinlikContent.style.maxHeight !== "fit-content") {
         etkinlikContent.style.maxHeight = etkinlikCard.scrollHeight + "px"
       }
-    }
+    }    
   });
 }
 
@@ -531,9 +535,10 @@ for (i = 0; i < coll.length; i++) {
       etkinlikContent.style.transition = "0.2s";
       count++
       etkinlikCard.style.maxHeight = "fit-content"
-    }
+    }    
   });
 }
+
 
 
 var colll = document.getElementsByClassName("eiletisimm");
